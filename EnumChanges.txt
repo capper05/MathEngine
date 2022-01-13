@@ -1,0 +1,8 @@
+Thoughts on using Enums in MathEngine:
+-Turn Expression into interface, all subclasses are implementations
+-Move static classes from Expression to separate utility class, or use default class
+-Replace Operator class with Operator enum, with same methods and attributes as before (must check how implements keyword affects methods and attributes)
+-???--*Alternative*: leave abstract class/extends structure, have operator enum that implements operator interface which extends Expression abstract class--???
+-Repeat changes to Operator with Container class- use enums for trig/log functions
+-Try to eliminate parent --> child typecasting
+-Use either ordinal() or instance field to easily get precedance number for operators

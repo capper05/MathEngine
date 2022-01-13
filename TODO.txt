@@ -1,0 +1,20 @@
+TODO:
+-Change ElemList to handle expressions in exponents
+-simplify() method for Operator,Container
+	-Container trig identities
+	-Build tree from addends/factors
+-equals() method for Operators,Container,Constant,Variable
+-derive() method for Operator,Container,Constant,Variable
+-Add negative numbers
+-Check evaluate() method for Operator,Container,Constant,Variable
+-Add most possible containers (trig,log,abs,fact)
+-Polynomial division, multiplication, factoring
+-Constants (pi,e)
+-composition
+-Simplify exponents of 1,0
+-Add undefined/indeterminate options
+
+
+Simplify:
+	-Simplify children
+	-Get addends & factors of children
