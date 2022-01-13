@@ -285,6 +285,9 @@ public class Operator extends Expression {
                 posTree = posTree = treeRecursive(operators[0],firstElems,firstQuants);
                 negTree = treeRecursive(operators[0],secElems,secQuants);
                 Expression tempTree = new Operator(operators[1],posTree,negTree);
+                if (outElemObject.getConstant() == 0 && operators[0]==OperatorSymbol.ADD || outElemObject.getConstant() == 1 && operators[0]==OperatorSymbol.MULTIPLY) {     //Gets rid of unnecessary zero addition
+                    return tempTree;     //TODO: Do this for mult, and for other conditional branches
+                }
                 return (new Operator(operators[0],new Constant(outElemObject.getConstant()),tempTree));//.simplify();
             }
         }

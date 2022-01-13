@@ -55,6 +55,8 @@ public class Container extends Expression {
         switch (this.type) {
             case SIN:
                 return Math.sin(val);
+            case COS:
+                return Math.cos(val);
             case LN:
                 return Math.log(val); 
         }

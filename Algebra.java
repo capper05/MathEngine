@@ -94,7 +94,7 @@ public class Algebra {
     public static void main(String[] args) {
 
         //Derivative test
-        Expression exp1 = stringToExpression("x^0.5");
+        Expression exp1 = stringToExpression("sin(2*x)");
         Expression exp2 = exp1.derive('x');
         System.out.println(exp1);
         System.out.println(exp2);
