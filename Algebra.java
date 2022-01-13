@@ -92,7 +92,7 @@ public class Algebra {
         //return null;
     }
     public static void main(String[] args) {
-
+            //MESSAGE TO TEST GIT
         //Derivative test
         Expression exp1 = stringToExpression("sin(2*x)");
         Expression exp2 = exp1.derive('x');
