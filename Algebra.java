@@ -94,7 +94,7 @@ public class Algebra {
     public static void main(String[] args) {
             //MESSAGE TO TEST GIT
         //Derivative test
-        Expression exp1 = stringToExpression("-2*x^3");
+        Expression exp1 = stringToExpression("x*y");
         Expression exp2 = exp1.derive('x');
         System.out.println(exp1);
         System.out.println(exp2);
