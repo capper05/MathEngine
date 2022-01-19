@@ -247,6 +247,9 @@ public class Operator extends Expression {
         Expression[] outElems = outElemObject.getElements();
         Constant[] outQuants = outElemObject.getQuantities();
         if (outElems != null) {
+            if (operators[0] == OperatorSymbol.MULTIPLY && outElemObject.getConstant() == 0) {      //Extra exception: multiplication constant is zero, simplify to zero
+                return Constant.zero;
+            }
             for (int i=0;i<outElems.length;i++) {       //Count how many negative powers/multiples
                 if (outQuants[i].getValue() < 0) {
                     oppCount += 1;
@@ -274,11 +277,12 @@ public class Operator extends Expression {
             Expression negTree;
             if (firstElems.length < 1) {    //if there is no positive mult/add
                 negTree = treeRecursive(operators[0],secElems,secQuants);
+                //Figure out negative numbers so you don't have to do 0-something
                 return (new Operator(operators[1],new Constant(outElemObject.getConstant()),negTree));//.simplify();               
             } else if (secElems.length < 1) {       //if no sub/div
                 posTree = treeRecursive(operators[0],firstElems,firstQuants);
                 if (outElemObject.getConstant() == 0 && operators[0]==OperatorSymbol.ADD || outElemObject.getConstant() == 1 && operators[0]==OperatorSymbol.MULTIPLY) {     //Gets rid of unnecessary zero addition
-                    return posTree;     //TODO: Do this for mult, and for other conditional branches
+                    return posTree;
                 }
                 return (new Operator(operators[0],new Constant(outElemObject.getConstant()),posTree));//.simplify();
             } else {        //if both add&sub or mult&div
@@ -286,7 +290,7 @@ public class Operator extends Expression {
                 negTree = treeRecursive(operators[0],secElems,secQuants);
                 Expression tempTree = new Operator(operators[1],posTree,negTree);
                 if (outElemObject.getConstant() == 0 && operators[0]==OperatorSymbol.ADD || outElemObject.getConstant() == 1 && operators[0]==OperatorSymbol.MULTIPLY) {     //Gets rid of unnecessary zero addition
-                    return tempTree;     //TODO: Do this for mult, and for other conditional branches
+                    return tempTree;
                 }
                 return (new Operator(operators[0],new Constant(outElemObject.getConstant()),tempTree));//.simplify();
             }
