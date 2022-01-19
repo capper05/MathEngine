@@ -37,7 +37,7 @@ public class Constant extends Expression {
     public Expression simplify() {  //RETURNS SIMPLIFIED EXPRESSION
         return new Constant(this.value);    //Returns copy
     }
-    public double evaluate(double val) {    //RETURNS NUMERICAL EQUIVALENT WITH VARIABLE VALUE
-        return this.value;
+    public Expression evaluate(char[] variables, double[] values) {    //RETURNS NUMERICAL EQUIVALENT WITH VARIABLE VALUE
+        return new Constant(this.value);
     }
 }

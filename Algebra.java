@@ -94,11 +94,11 @@ public class Algebra {
     public static void main(String[] args) {
             //MESSAGE TO TEST GIT
         //Derivative test
-        Expression exp1 = stringToExpression("x*y");
+        /*Expression exp1 = stringToExpression("x*y");
         Expression exp2 = exp1.derive('x');
         System.out.println(exp1);
         System.out.println(exp2);
-        System.out.println(exp2.simplify());
+        System.out.println(exp2.simplify());*/
         //System.out.println(exp2.derive('x'));
         //System.out.println(exp2.derive('x').simplify());
 
@@ -149,6 +149,13 @@ public class Algebra {
         ElementList list2 = new ElementList(1,elems2,quants2);
         System.out.println(list1.combine(list2,'*'));*/
 
+        //EVALUATE TEST
+        Expression exp1 = stringToExpression("x*y");
+        Expression exp2 = exp1.evaluate(new char[]{'x'},new double[]{1});
+        Expression exp3 = exp2.simplify();
+        System.out.println(exp1);
+        System.out.println(exp2);
+        System.out.println(exp3);
         //System.out.println(Constant.zero);
 
         /*Expression x = new Constant(3);

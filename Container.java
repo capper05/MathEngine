@@ -51,15 +51,8 @@ public class Container extends Expression {
     public Expression simplify() {  //RETURNS EXPRESSION WITH SIMPLIFIED LIKE FACTORS/ADDENDS/POWERS
         return new Container(this.type,this.child.simplify());  //TODO: check for trig identities
     }
-    public double evaluate(double val) {    //RETURNS NUMERICAL EQUIVALENT WITH VARIABLE VALUE
-        switch (this.type) {
-            case SIN:
-                return Math.sin(val);
-            case COS:
-                return Math.cos(val);
-            case LN:
-                return Math.log(val); 
-        }
-        return 0;
+    public Expression evaluate(char[] variables, double[] values) {    //RETURNS NUMERICAL EQUIVALENT WITH VARIABLE VALUE
+       Expression child = this.child.evaluate(variables,values);
+       return new Container(this.type,child);
     }
 }

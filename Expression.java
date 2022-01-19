@@ -1,6 +1,6 @@
 public abstract class Expression {
-    protected ElementList factors;  //Holds factors and powers as Expressions and Doubles
-    protected ElementList addends;  //Holds addends and multiples as Expressions and Doubles
+    protected ElementList factors;  //Holds factors and powers as Expressions and Constants
+    protected ElementList addends;  //Holds addends and multiples as Expressions and Constants
     public abstract String toString();
     public abstract boolean equals(Expression other);   //Compares mathematical equivalence of any two expression
     public abstract void genElems();
@@ -13,5 +13,5 @@ public abstract class Expression {
     }
     public abstract Expression derive(char varName);    //Finds derivative of expression
     public abstract Expression simplify();  //Mathematically simplifies expression
-    public abstract double evaluate(double val);    //Finds value of expression with value input
+    public abstract Expression evaluate(char[] variables, double[] values);    //Finds value of expression with certain input
 }

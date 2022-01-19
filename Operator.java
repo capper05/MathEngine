@@ -297,21 +297,9 @@ public class Operator extends Expression {
         }
         return new Constant(outElemObject.getConstant());
     }
-    public double evaluate(double val) {    //RETURNS NUMERICAL EQUIVALENT WITH VARIABLE VALUE
-        double first = this.child1.evaluate(val);
-        double second = this.child2.evaluate(val);
-        switch (this.symbol) {
-            case ADD:
-                return first + second;
-            case SUBTRACT:
-                return first - second;
-            case MULTIPLY:
-                return first * second;
-            case DIVIDE:
-                return first / second;
-            case EXPONENT:
-                return Math.pow(first,second);
-        }
-        return 0;
+    public Expression evaluate(char[] variables, double[] values) {    //RETURNS NUMERICAL EQUIVALENT WITH VARIABLE VALUE
+        Expression first = this.child1.evaluate(variables,values);
+        Expression second = this.child2.evaluate(variables,values);
+        return new Operator(this.symbol,first,second);
     }
 }

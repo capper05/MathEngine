@@ -31,7 +31,12 @@ public class Variable extends Expression{
     public Expression simplify() {  //RETURNS EXPRESSION WITH SIMPLIFIED LIKE FACTORS/ADDENDS/POWERS
         return new Variable(this.letter);
     }
-    public double evaluate(double val) {    //RETURNS NUMERICAL EQUIVALENT WITH VARIABLE VALUE
-        return val;
+    public Expression evaluate(char[] variables, double[] values) {    //RETURNS NUMERICAL EQUIVALENT WITH VARIABLE VALUE
+        for (int i=0;i<variables.length;i++) {
+            if (variables[i] == this.letter) {
+                return new Constant(values[i]);
+            }
+        }
+        return new Variable(this.letter);
     }
 }
