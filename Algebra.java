@@ -94,7 +94,7 @@ public class Algebra {
     public static void main(String[] args) {
             //MESSAGE TO TEST GIT
         //Derivative test
-        /*Expression exp1 = stringToExpression("x*y");
+        /*Expression exp1 = stringToExpression("x^(x-2)");
         Expression exp2 = exp1.derive('x');
         System.out.println(exp1);
         System.out.println(exp2);
@@ -150,8 +150,8 @@ public class Algebra {
         System.out.println(list1.combine(list2,'*'));*/
 
         //EVALUATE TEST
-        Expression exp1 = stringToExpression("x*y");
-        Expression exp2 = exp1.evaluate(new char[]{'x'},new double[]{1});
+        Expression exp1 = stringToExpression("1/2");
+        Expression exp2 = exp1.evaluate(new char[]{'x'},new double[]{0});
         Expression exp3 = exp2.simplify();
         System.out.println(exp1);
         System.out.println(exp2);

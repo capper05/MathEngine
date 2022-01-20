@@ -13,6 +13,8 @@ TODO:
 -composition
 -Simplify exponents of 1,0
 -Add undefined/indeterminate options
+-Add logarithms of variable base
+-Handle 1/0, 0/0
 
 
 Simplify:
