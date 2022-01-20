@@ -69,7 +69,6 @@ public class Algebra {
             if (loc != -1) {        //if operator found
                 String sect1 = input.substring(0,loc);      //split expression by operator
                 String sect2 = input.substring(loc+1,input.length());
-                //System.out.println(operator);
                 return new Operator(OperatorSymbol.convert(operator),stringToExpression(sect1),stringToExpression(sect2));    //create operator expression object
             } else if (input.charAt(0) == '(') {        //if parentheses enclosing entire expression
                 String contents = input.substring(1,input.length()-1);
@@ -94,11 +93,11 @@ public class Algebra {
     public static void main(String[] args) {
             //MESSAGE TO TEST GIT
         //Derivative test
-        Expression exp1 = stringToExpression("(v^2*R)/(r+R)");
+        /*Expression exp1 = stringToExpression("(v^2*R)/(r+R)");
         Expression exp2 = exp1.derive('R');
         System.out.println(exp1);
         System.out.println(exp2);
-        System.out.println(exp2.simplify());
+        System.out.println(exp2.simplify());*/
         //System.out.println(exp2.derive('x'));
         //System.out.println(exp2.derive('x').simplify());
 
@@ -129,14 +128,14 @@ public class Algebra {
 
         //SIMPLIFY TEST --- it works!
         //Expression exp1 = stringToExpression("2*3*x/(x*x)");
-        /*Expression exp1 = stringToExpression("2^x*(1*ln(2)+x/2*0)*ln(2)");
+        Expression exp1 = stringToExpression("(x/x)^2");
         System.out.println(exp1);
         System.out.println();
         System.out.println(exp1.getAddends());
         System.out.println();
         System.out.println(exp1.getFactors());
         System.out.println();
-        System.out.println(exp1.simplify());*/
+        System.out.println(exp1.simplify());
         
         //COMBINE TEST --- it works!
         /*Expression exp = stringToExpression("2^x");

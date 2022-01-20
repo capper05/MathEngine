@@ -1,3 +1,4 @@
+import java.lang.Math;
 public class ElementList {
     private double constVal=0;      //all constant factors/addends
     private Expression[] elements;  //factor/addend expressions
@@ -183,7 +184,9 @@ public class ElementList {
         return outputElems;
     }//combine
     public ElementList exponentFactors(double power) {              //TODO: finish
-        //ystem.out.println(this.elements==null);
+        if (this.elements == null) {
+            return new ElementList(Math.pow(this.constVal,power),0,null,0);
+        }
         Constant[] newQuants = new Constant[this.elements.length];
         for (int i=0;i<this.elements.length;i++) {
             newQuants[i] = new Constant(this.quantities[i].getValue()*power);
