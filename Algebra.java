@@ -128,14 +128,14 @@ public class Algebra {
 
         //SIMPLIFY TEST --- it works!
         //Expression exp1 = stringToExpression("2*3*x/(x*x)");
-        Expression exp1 = stringToExpression("(x/x)^2");
+        /*Expression exp1 = stringToExpression("(x/x)^2");
         System.out.println(exp1);
         System.out.println();
         System.out.println(exp1.getAddends());
         System.out.println();
         System.out.println(exp1.getFactors());
         System.out.println();
-        System.out.println(exp1.simplify());
+        System.out.println(exp1.simplify());*/
         
         //COMBINE TEST --- it works!
         /*Expression exp = stringToExpression("2^x");
@@ -160,5 +160,19 @@ public class Algebra {
         /*Expression x = new Constant(3);
         Expression y = stringToExpression("sin(x)");        //TODO: integrate combineQuants to allow combination of non-constant exponents
         System.out.println(ElementList.combineQuants(y,x,-1));*/
+
+        Expression exp1 = stringToExpression("0.025*ln(x*6.914*10^16)");
+        Expression exp2 = stringToExpression("(1-x)/200");
+        System.out.println(exp1);
+        System.out.println(exp2);
+        double i1 = ((Constant) exp2.evaluate(new char[]{'x'},new double[]{0.7}).simplify()).getValue();
+        System.out.println(i1);
+        Expression v_1 = exp1.evaluate(new char[]{'x'},new double[]{i1}).simplify();
+        System.out.println(v_1);
+        double v1 = ((Constant) exp1.evaluate(new char[]{'x'},new double[]{i1}).simplify()).getValue();
+        System.out.println(v1);
+        double i2 = ((Constant) exp2.evaluate(new char[]{'x'},new double[]{v1}).simplify()).getValue();
+        double v2 = ((Constant) exp1.evaluate(new char[]{'x'},new double[]{i2}).simplify()).getValue();
+        System.out.println(v2);
     }
 }

@@ -52,7 +52,10 @@ public class Container extends Expression {
         return new Container(this.type,this.child.simplify());  //TODO: check for trig identities, constants
     }
     public Expression evaluate(char[] variables, double[] values) {    //RETURNS NUMERICAL EQUIVALENT WITH VARIABLE VALUE
-       Expression child = this.child.evaluate(variables,values);
-       return new Container(this.type,child);
+       Expression newChild = this.child.evaluate(variables,values);
+       //if (this.type == ContainerType.LN) {
+           //return new Constant(Math.log(((Constant) newChild).getValue()));
+       //}
+       return new Container(this.type,newChild);
     }
 }
