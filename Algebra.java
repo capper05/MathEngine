@@ -1,3 +1,4 @@
+import java.lang.Math;
 public class Algebra {
     public static boolean isNumber(String str) {        //  CHECKS IF STRING IS NUMERIC
         if (str.equals("e")) {
@@ -161,18 +162,25 @@ public class Algebra {
         Expression y = stringToExpression("sin(x)");        //TODO: integrate combineQuants to allow combination of non-constant exponents
         System.out.println(ElementList.combineQuants(y,x,-1));*/
 
-        Expression exp1 = stringToExpression("0.025*ln(x*6.914*10^16)");
+        
+        //EE 2115 Test
+        /*Expression exp1 = stringToExpression("0.025*ln(x*1.446*10^15)");
         Expression exp2 = stringToExpression("(1-x)/200");
         System.out.println(exp1);
         System.out.println(exp2);
         double i1 = ((Constant) exp2.evaluate(new char[]{'x'},new double[]{0.7}).simplify()).getValue();
         System.out.println(i1);
-        Expression v_1 = exp1.evaluate(new char[]{'x'},new double[]{i1}).simplify();
-        System.out.println(v_1);
         double v1 = ((Constant) exp1.evaluate(new char[]{'x'},new double[]{i1}).simplify()).getValue();
         System.out.println(v1);
         double i2 = ((Constant) exp2.evaluate(new char[]{'x'},new double[]{v1}).simplify()).getValue();
+        System.out.println(i2);
         double v2 = ((Constant) exp1.evaluate(new char[]{'x'},new double[]{i2}).simplify()).getValue();
-        System.out.println(v2);
+        System.out.println(v2);*/
+
+        //SCI NOTATION TEST
+        /*Expression exp1 = stringToExpression("10^20");
+        System.out.println(((Operator) exp1).getFactors());
+        Expression exp2 = exp1.simplify();
+        System.out.println(exp2);*/
     }
 }

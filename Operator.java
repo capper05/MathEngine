@@ -213,6 +213,7 @@ public class Operator extends Expression {
         if (this.symbol == OperatorSymbol.MULTIPLY || this.symbol == OperatorSymbol.DIVIDE) {
             outElemObject = newChild1.getFactors().combine(newChild2.getFactors(),this.symbol.toString().charAt(0));    //Combine factors
             operators = new OperatorSymbol[]{OperatorSymbol.MULTIPLY,OperatorSymbol.DIVIDE};    //Operators: * then /
+            //System.out.println(outElemObject);
         } else if (this.symbol == OperatorSymbol.ADD || this.symbol == OperatorSymbol.SUBTRACT) {
             outElemObject = newChild1.getAddends().combine(newChild2.getAddends(),this.symbol.toString().charAt(0));    //Combine addends
             operators = new OperatorSymbol[]{OperatorSymbol.ADD,OperatorSymbol.SUBTRACT};       //Operators: + then -

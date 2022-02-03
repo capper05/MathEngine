@@ -20,7 +20,7 @@ public class Constant extends Expression {
     }
     public String toString() {      //DISPLAYS STRING REPRESENTATION OF NUMBER
         if (this.value%1==0) {      //detects if number is integer
-            return String.valueOf((int)this.value); //returns integer string
+            return String.valueOf((long)this.value); //returns integer string
         }
         return String.valueOf(this.value);  //returns decimal string
     }

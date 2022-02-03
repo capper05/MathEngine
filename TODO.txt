@@ -2,7 +2,6 @@ TODO:
 -Change ElemList to handle expressions in exponents
 -simplify() method for Operator,Container
 	-Container trig identities
-	-Build tree from addends/factors
 -equals() method for Operators,Container,Constant,Variable
 -derive() method for Operator,Container,Constant,Variable
 -Add negative numbers
@@ -16,7 +15,7 @@ TODO:
 -Add logarithms of variable base
 -Handle 1/0, 0/0
 -Handle large numbers, scientific notation
-
+-Create new data type for extra extra large numbers
 
 Simplify:
 	-Simplify children

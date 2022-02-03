@@ -49,7 +49,13 @@ public class Container extends Expression {
         return new Operator(OperatorSymbol.MULTIPLY,chain,converted);
     }
     public Expression simplify() {  //RETURNS EXPRESSION WITH SIMPLIFIED LIKE FACTORS/ADDENDS/POWERS
-        return new Container(this.type,this.child.simplify());  //TODO: check for trig identities, constants
+        Expression newChild = this.child.simplify();
+        if (newChild instanceof Constant) {
+            if (this.type == ContainerType.LN) {
+                return new Constant(Math.log(((Constant) newChild).getValue()));
+            }//Do for other functions
+        }
+        return new Container(this.type,newChild);  //TODO: check for trig identities, constants
     }
     public Expression evaluate(char[] variables, double[] values) {    //RETURNS NUMERICAL EQUIVALENT WITH VARIABLE VALUE
        Expression newChild = this.child.evaluate(variables,values);
