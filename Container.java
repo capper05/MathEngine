@@ -51,9 +51,46 @@ public class Container extends Expression {
     public Expression simplify() {  //RETURNS EXPRESSION WITH SIMPLIFIED LIKE FACTORS/ADDENDS/POWERS
         Expression newChild = this.child.simplify();
         if (newChild instanceof Constant) {
-            if (this.type == ContainerType.LN) {
-                return new Constant(Math.log(((Constant) newChild).getValue()));
-            }//Do for other functions
+            double constVal = ((Constant) newChild).getValue();     //Constant equivalent of child
+            double newConst= 0;        //Result after operation
+            switch (this.type) {
+                //TODO: Handle negative log cases
+                case LN:
+                    newConst = Math.log(constVal);
+                    break;
+                case LOG:
+                    newConst = Math.log10(constVal);
+                    break;
+                case SIN:
+                    newConst = Math.sin(constVal);
+                    break;
+                case COS:
+                    newConst = Math.cos(constVal);
+                    break;
+                case TAN:
+                    newConst = Math.tan(constVal);
+                    break;
+                case ASIN:
+                    newConst = Math.asin(constVal);
+                    break;
+                case ACOS:
+                    newConst = Math.acos(constVal);
+                    break;
+                case ATAN:
+                    newConst = Math.atan(constVal);
+                    break;
+                case SINH:
+                    newConst = Math.sinh(constVal);
+                    break;
+                case COSH:
+                    newConst = Math.cosh(constVal);
+                    break;
+                case TANH:
+                    newConst = Math.tanh(constVal);
+                    break;
+            }       //TODO: handle unfamiliar container
+                    //TODO: handle inverse trig functions
+            return new Constant(newConst);
         }
         return new Container(this.type,newChild);  //TODO: check for trig identities, constants
     }

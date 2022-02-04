@@ -1,26 +1,38 @@
 public enum ContainerType {
-    SIN,
-    COS,
-    LN;
+    SIN("sin"),
+    COS("cos"),
+    TAN("tan"),
+    SEC("sec"),
+    CSC("csc"),
+    COT("cot"),
+    ASIN("asin"),
+    ACOS("acos"),
+    ATAN("atan"),
+    ASEC("asec"),
+    ACSC("acsc"),
+    ACOT("acot"),
+    SINH("sinh"),
+    COSH("cosh"),
+    TANH("tanh"),
+    LN("ln"),
+    LOG("log"),
+    ABS("abs"),
+    FACT("fact");
+
+    public String label;
+
+    private ContainerType(String label) {
+        this.label = label;
+    }
+
     public String toString() {
-        switch (this) {
-            case SIN:
-                return "sin";
-            case LN:
-                return "ln";
-            case COS:
-                return "cos";
-        }
-        return null;
+        return this.label;
     }
     public static ContainerType convert(String type) {
-        switch (type) {
-            case "sin":
-                return SIN;
-            case "ln":
-                return LN;
-            case "cos":
-                return COS;
+        for (ContainerType c : values()) {
+            if (c.label.equals(type)) {
+                return c;
+            }
         }
         return null;
     }

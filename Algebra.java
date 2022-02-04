@@ -182,5 +182,8 @@ public class Algebra {
         System.out.println(((Operator) exp1).getFactors());
         Expression exp2 = exp1.simplify();
         System.out.println(exp2);*/
+
+        Expression exp1 = stringToExpression("sin(2)");
+        System.out.println(exp1.derive('x').simplify());
     }
 }
