@@ -140,7 +140,8 @@ public class Operator extends Expression {
             return new Operator(OperatorSymbol.MULTIPLY,power,sum);
         }
         return null;
-    }
+    }//derive
+
     public static Expression treeRecursive(OperatorSymbol operator,Expression[] elements,Constant[] quantities) {   //CREATE A BINARY TREE OF ADDENDS/FACTORS
         Expression output = null;
         if (elements.length >= 2) {     //When array has multiple expressions
