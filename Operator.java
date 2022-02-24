@@ -8,16 +8,16 @@ public class Operator extends Expression {
         this.child1 = startChild1;
         this.child2 = startChild2;
         genElems();     //Generate factors/addends right as operator is created
-    }
+    }//Constructor
     public OperatorSymbol getSymbol() {     //get operation
         return this.symbol;
-    }
+    }//getSymbol
     public Expression getChild1() {     //get first branch
         return this.child1;
-    }
+    }//getChild1
     public Expression getChild2() {     //get second branch
         return this.child2;
-    }
+    }//getChild2
     public static int operatorRank(OperatorSymbol operator) {       //DETERMINES ORDER OF OPERATIONS, LAST TO FIRST
         switch (operator) {
             case EXPONENT:
@@ -32,7 +32,7 @@ public class Operator extends Expression {
                 return 4;
         }
         return -1;
-    }
+    }//operatorRank
     public boolean equals(Expression other) {   //DETERMINE IF MATHEMATICALLY EQUIVALENT TO OTHER EXPRESSION
         Operator otherOp=null;
         if (other instanceof Operator) {      //If other expression is operator:
@@ -54,7 +54,7 @@ public class Operator extends Expression {
             return true;        //Equal if operator, and two children are identical
         }
         return false;
-    }
+    }//equals
     public String toString() {  //STRING OF BOTH CHILDREN CONNECTED WITH OPERATOR
         String output="";
         if (this.child1 instanceof Operator && operatorRank(((Operator)this.child1).getSymbol())>operatorRank(this.symbol)) {
@@ -70,7 +70,7 @@ public class Operator extends Expression {
             output += this.child2;          //Add second child w/o parentheses
         }
         return output;
-    }
+    }//toString
     public void genElems() {        //GENERATE ADDENDS AND FACTORS
         switch (this.symbol) {
             case MULTIPLY:
@@ -117,7 +117,7 @@ public class Operator extends Expression {
                 this.addends = new ElementList(0,1,this,1);         //Addend is itself*1+0
                 break;
         }
-    }
+    }//genElems
     public Expression derive(char varName) {    //RETURNS DERIVATIVE
         //System.out.println(this.child2);
         Operator prod1 = new Operator(OperatorSymbol.MULTIPLY,this.child1,this.child2.derive(varName));     //Precalculate product rule addends
@@ -285,5 +285,5 @@ public class Operator extends Expression {
         Expression first = this.child1.evaluate(variables,values);  //Evaluate left branch
         Expression second = this.child2.evaluate(variables,values); //Evaluate right branch
         return new Operator(this.symbol,first,second);      //Combine branches
-    }
+    }//evaluate
 }

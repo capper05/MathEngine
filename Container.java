@@ -7,7 +7,7 @@ public class Container extends Expression {
         this.type = startType;
         this.child = startChild;
         genElems();
-    }
+    }//Constructor
     public boolean equals(Expression other) {   //DETERMINE IF MATHEMATICALLY EQUIVALENT TO OTHER EXPRESSION
         if (!(other instanceof Container)) {
             return false;
@@ -19,21 +19,21 @@ public class Container extends Expression {
             return false;
         }
         return true;
-    }
+    }//equals
     public String toString() {
         return type + "(" + child + ")";
-    }
+    }//toString
     
     public void genElems() {
         this.factors = new ElementList(1,1,this,1);     //TODO: simplify constants ex. sin(0)
         this.addends = new ElementList(0,1,this,1);
-    }
+    }//genElems
     public ContainerType getType() {
         return this.type;
-    }
+    }//getType
     public Expression getChild() {
         return this.child;
-    }
+    }//getChild
     public Expression derive(char varName) {    //RETURNS EXPRESSION WITH SIMPLIFIED LIKE FACTORS/ADDENDS/POWERS
         Expression converted=null;
         Expression chain;
@@ -47,7 +47,7 @@ public class Container extends Expression {
         }
         chain = this.child.derive(varName);
         return new Operator(OperatorSymbol.MULTIPLY,chain,converted);
-    }
+    }//derive
     public Expression simplify() {  //RETURNS EXPRESSION WITH SIMPLIFIED LIKE FACTORS/ADDENDS/POWERS
         Expression newChild = this.child.simplify();
         if (newChild instanceof Constant) {
@@ -93,12 +93,12 @@ public class Container extends Expression {
             return new Constant(newConst);
         }
         return new Container(this.type,newChild);  //TODO: check for trig identities, constants
-    }
+    }//simplify
     public Expression evaluate(char[] variables, double[] values) {    //RETURNS NUMERICAL EQUIVALENT WITH VARIABLE VALUE
        Expression newChild = this.child.evaluate(variables,values);
        //if (this.type == ContainerType.LN) {
            //return new Constant(Math.log(((Constant) newChild).getValue()));
        //}
        return new Container(this.type,newChild);
-    }
+    }//evaluate
 }
