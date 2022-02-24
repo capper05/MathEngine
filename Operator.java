@@ -141,7 +141,7 @@ public class Operator extends Expression {
         }
         return null;
     }
-    public static Expression treeRecursive(OperatorSymbol operator,Expression[] elements,Constant[] quantities) {   //Create a binary tree of addends/factors
+    public static Expression treeRecursive(OperatorSymbol operator,Expression[] elements,Constant[] quantities) {   //CREATE A BINARY TREE OF ADDENDS/FACTORS
         Expression output = null;
         if (elements.length >= 2) {     //When array has multiple expressions
             int size1 = elements.length/2;
@@ -166,7 +166,8 @@ public class Operator extends Expression {
             output = (new Operator(OperatorSymbol.MULTIPLY,elements[0],quantities[0].absoluteVal())).simplify();    //Return addend*coeff
         }
         return output;
-    }
+    }//treeRecursive
+
     public Expression simplify() {  //RETURNS EXPRESSION WITH SIMPLIFIED LIKE FACTORS/ADDENDS/POWERS
         //Start with easy constant cases
         if (this.factors.getElements() == null) {       //If can be reduced to a constant, simplify to that constant
@@ -277,7 +278,8 @@ public class Operator extends Expression {
             }
         }
         return new Constant(outElemObject.getConstant());
-    }
+    }//Simplify
+
     public Expression evaluate(char[] variables, double[] values) {    //RETURNS EXPRESSION WITH VALUES SUBBED IN FOR VARS
         Expression first = this.child1.evaluate(variables,values);  //Evaluate left branch
         Expression second = this.child2.evaluate(variables,values); //Evaluate right branch
