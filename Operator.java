@@ -257,9 +257,9 @@ public class Operator extends Expression {
                 negTree = treeRecursive(operators[0],secElems,secQuants);
                 //Figure out negative numbers so you don't have to do 0-something
                 if (operators[1] == OperatorSymbol.DIVIDE) {
-                    return new Operator(operators[1],Constant.one,negTree);
+                    return new Operator(operators[1],new Constant(outElemObject.getConstant()),negTree);
                 } else {
-                    return new Operator(operators[1],Constant.negativeOne,negTree);
+                    return new Operator(operators[1],new Constant(outElemObject.getConstant()*-1),negTree);
                 }
                 //return (new Operator(operators[1],new Constant(outElemObject.getConstant()),negTree));//.simplify();               
             } else if (secElems.length < 1) {       //if no sub/div

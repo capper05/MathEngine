@@ -183,7 +183,8 @@ public class Algebra {
         Expression exp2 = exp1.simplify();
         System.out.println(exp2);*/
 
-        Expression exp1 = stringToExpression("sin(2)");
+        Expression exp1 = stringToExpression("tan(x)");
+        System.out.println(exp1.derive('x'));
         System.out.println(exp1.derive('x').simplify());
     }
 }

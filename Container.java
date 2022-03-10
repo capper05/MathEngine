@@ -42,8 +42,15 @@ public class Container extends Expression {
         } else if (this.type == ContainerType.COS) {
             Container sine = new Container(ContainerType.SIN,this.child);
             converted = new Operator(OperatorSymbol.MULTIPLY,Constant.negativeOne,sine);
+        } else if (this.type == ContainerType.TAN) {
+            Container secant = new Container(ContainerType.SEC,this.child);
+            converted = new Operator(OperatorSymbol.EXPONENT,secant,new Constant(2));
         } else if (this.type == ContainerType.LN) {
             converted = new Operator(OperatorSymbol.DIVIDE,Constant.one,this.child);
+        } else if (this.type == ContainerType.LOG) {
+            Container natlog = new Container(ContainerType.LN,new Constant(10));
+            Operator multiply = new Operator(OperatorSymbol.MULTIPLY,natlog,this.child);
+            converted = new Operator(OperatorSymbol.DIVIDE,Constant.one,multiply);
         }
         chain = this.child.derive(varName);
         return new Operator(OperatorSymbol.MULTIPLY,chain,converted);
@@ -88,6 +95,9 @@ public class Container extends Expression {
                 case TANH:
                     newConst = Math.tanh(constVal);
                     break;
+                default:
+                    System.out.println("Not a valid container");
+                    newConst = -1;
             }       //TODO: handle unfamiliar container
                     //TODO: handle inverse trig functions
             return new Constant(newConst);
