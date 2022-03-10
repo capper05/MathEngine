@@ -19,6 +19,8 @@ TODO:
 -Change string before plugging into Expression?  ex. sec becomes 1/cos, log becomes 2 arg log function, ! becomes container, etc.
 -log Operator
 
+Test
+
 Simplify:
 	-Simplify children
 	-Get addends & factors of children
