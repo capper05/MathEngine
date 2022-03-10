@@ -51,6 +51,64 @@ public class Container extends Expression {
             Container natlog = new Container(ContainerType.LN,new Constant(10));
             Operator multiply = new Operator(OperatorSymbol.MULTIPLY,natlog,this.child);
             converted = new Operator(OperatorSymbol.DIVIDE,Constant.one,multiply);
+        } else if (this.type == ContainerType.SEC) {
+            Container tan = new Container(ContainerType.TAN,this.child);
+            Container sec = new Container(ContainerType.SEC,this.child);
+            converted = new Operator(OperatorSymbol.MULTIPLY,tan,sec);
+        } else if (this.type == ContainerType.CSC) {
+            Container cot = new Container(ContainerType.COT,this.child);
+            Container csc = new Container(ContainerType.CSC,this.child);
+            Operator mult = new Operator(OperatorSymbol.MULTIPLY,cot,csc);
+            converted = new Operator(OperatorSymbol.MULTIPLY,Constant.negativeOne,mult);
+        } else if (this.type == ContainerType.COT) {
+            Container csc = new Container(ContainerType.CSC,this.child);
+            Operator exp = new Operator(OperatorSymbol.EXPONENT,csc,new Constant(2));
+            converted = new Operator(OperatorSymbol.MULTIPLY,Constant.negativeOne,exp);
+        } else if (this.type == ContainerType.ASIN) {
+            Operator square = new Operator(OperatorSymbol.EXPONENT,this.child,Constant.two);
+            Operator minus = new Operator(OperatorSymbol.SUBTRACT,Constant.one,square);
+            Operator sqrt = new Operator(OperatorSymbol.EXPONENT,minus,new Constant(0.5));
+            converted = new Operator(OperatorSymbol.DIVIDE,Constant.one,sqrt);
+        } else if (this.type == ContainerType.ACOS) {
+            Operator square = new Operator(OperatorSymbol.EXPONENT,this.child,Constant.two);
+            Operator minus = new Operator(OperatorSymbol.SUBTRACT,Constant.one,square);
+            Operator sqrt = new Operator(OperatorSymbol.EXPONENT,minus,new Constant(0.5));
+            Operator divide = new Operator(OperatorSymbol.DIVIDE,Constant.one,sqrt);
+            converted = new Operator(OperatorSymbol.MULTIPLY,Constant.negativeOne,divide);
+        } else if (this.type == ContainerType.ATAN) {
+            Operator square = new Operator(OperatorSymbol.EXPONENT,this.child,Constant.two);
+            Operator add = new Operator(OperatorSymbol.ADD,Constant.one,square);
+            converted = new Operator(OperatorSymbol.DIVIDE,Constant.one,add);
+        } else if (this.type == ContainerType.ACOT) {
+            Operator square = new Operator(OperatorSymbol.EXPONENT,this.child,Constant.two);
+            Operator add = new Operator(OperatorSymbol.ADD,Constant.one,square);
+            Operator divide = new Operator(OperatorSymbol.DIVIDE,Constant.one,add);
+            converted = new Operator(OperatorSymbol.MULTIPLY,Constant.negativeOne,divide);
+        } else if (this.type == ContainerType.ASEC) {
+            Operator square = new Operator(OperatorSymbol.EXPONENT,this.child,Constant.two);
+            Operator minus = new Operator(OperatorSymbol.SUBTRACT,Constant.one,square);
+            Operator sqrt = new Operator(OperatorSymbol.EXPONENT,minus,new Constant(0.5));
+            Container abs = new Container(ContainerType.ABS,this.child);
+            Operator mult = new Operator(OperatorSymbol.MULTIPLY,abs,sqrt);
+            converted = new Operator(OperatorSymbol.DIVIDE,Constant.one,mult);
+        } else if (this.type == ContainerType.ACSC) {
+            Operator square = new Operator(OperatorSymbol.EXPONENT,this.child,Constant.two);
+            Operator minus = new Operator(OperatorSymbol.SUBTRACT,Constant.one,square);
+            Operator sqrt = new Operator(OperatorSymbol.EXPONENT,minus,new Constant(0.5));
+            Container abs = new Container(ContainerType.ABS,this.child);
+            Operator mult = new Operator(OperatorSymbol.MULTIPLY,abs,sqrt);
+            converted = new Operator(OperatorSymbol.DIVIDE,Constant.negativeOne,mult);
+        } else if (this.type == ContainerType.SINH) {
+            converted = new Container(ContainerType.COSH,this.child);
+        } else if (this.type == ContainerType.COSH) {
+            converted = new Container(ContainerType.SINH,this.child);
+        } else if (this.type == ContainerType.TANH) {
+            Container cosh = new Container(ContainerType.COSH,this.child);
+            Operator square = new Operator(OperatorSymbol.EXPONENT,cosh,Constant.two);
+            converted = new Operator(OperatorSymbol.DIVIDE,Constant.one,square);
+        } else if (this.type == ContainerType.ABS) {
+            Container abs = new Container(ContainerType.ABS,this.child);
+            converted = new Operator(OperatorSymbol.DIVIDE,this.child,abs);
         }
         chain = this.child.derive(varName);
         return new Operator(OperatorSymbol.MULTIPLY,chain,converted);
@@ -94,6 +152,13 @@ public class Container extends Expression {
                     break;
                 case TANH:
                     newConst = Math.tanh(constVal);
+                    break;
+                case ABS:
+                    if (constVal < 0) {
+                        newConst = constVal * -1;
+                    } else {
+                        newConst = constVal;
+                    }
                     break;
                 default:
                     System.out.println("Not a valid container");

@@ -4,6 +4,7 @@ public class Constant extends Expression {
     public static Constant one = new Constant(1);
     public static Constant zero = new Constant(0);
     public static Constant negativeOne = new Constant(-1);
+    public static Constant two = new Constant(2);
     public Constant(double startValue) {    //CONSTRUCTOR
         this.value = startValue;
         genElems();     //Generate addends and factors
