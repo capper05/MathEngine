@@ -183,14 +183,5 @@ public class Algebra {
         Expression exp2 = exp1.simplify();
         System.out.println(exp2);*/
 
-        Expression exp1 = stringToExpression("abs(x)");
-        Expression exp2 = exp1.derive('x');
-        Expression exp3 = exp2.simplify();
-        System.out.println(exp1);
-        System.out.println(exp2);
-        System.out.println(exp3);
-
-        //Expression exp4 = stringToExpression("0-x^2*(2/x)");
-        //System.out.println(exp4.simplify());
     }
 }
