@@ -171,6 +171,7 @@ public class Operator extends Expression {
 
     public Expression simplify() {  //RETURNS EXPRESSION WITH SIMPLIFIED LIKE FACTORS/ADDENDS/POWERS
         //Start with easy constant cases
+        //System.out.println(this);
         if (this.factors.getElements() == null) {       //If can be reduced to a constant, simplify to that constant
             return new Constant(this.factors.getConstant());
         } else if (this.addends.getElements() == null) {
@@ -196,7 +197,7 @@ public class Operator extends Expression {
                 if (this.symbol == OperatorSymbol.ADD) {
                     return this.child2.simplify();      //Return second branch
                 } else {
-                    return new Operator(OperatorSymbol.MULTIPLY,Constant.negativeOne,this.child2.simplify());   //Return second branch negated
+                    return (new Operator(OperatorSymbol.MULTIPLY,Constant.negativeOne,this.child2.simplify())).simplify();   //Return second branch negated, simplified so -1 is combined w/ constants
                 }
             } else if (this.child2.equals(Constant.zero)) {     //Second branch is zero
                 return this.child1.simplify();      //return first branch
@@ -257,9 +258,9 @@ public class Operator extends Expression {
                 negTree = treeRecursive(operators[0],secElems,secQuants);
                 //Figure out negative numbers so you don't have to do 0-something
                 if (operators[1] == OperatorSymbol.DIVIDE) {
-                    return new Operator(operators[1],Constant.one,negTree);
+                    return new Operator(operators[1],new Constant(outElemObject.getConstant()),negTree);
                 } else {
-                    return new Operator(operators[1],Constant.negativeOne,negTree);
+                    return new Operator(operators[1],new Constant(outElemObject.getConstant()),negTree);
                 }
                 //return (new Operator(operators[1],new Constant(outElemObject.getConstant()),negTree));//.simplify();               
             } else if (secElems.length < 1) {       //if no sub/div

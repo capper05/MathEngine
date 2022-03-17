@@ -1,24 +1,29 @@
 TODO:
--Change ElemList to handle expressions in exponents
--simplify() method for Operator,Container
-	-Container trig identities
--equals() method for Operators,Container,Constant,Variable
--derive() method for Operator,Container,Constant,Variable
--Add negative numbers
--Check evaluate() method for Operator,Container,Constant,Variable
--Add most possible containers (trig,log,abs,fact)
--Polynomial division, multiplication, factoring
--Constants (pi,e)
--composition
--Simplify exponents of 1,0
--Add undefined/indeterminate options
--Add logarithms of variable base
--Handle 1/0, 0/0
--Handle large numbers, scientific notation
--Create new data type for extra extra large numbers
--Change string before plugging into Expression?  ex. sec becomes 1/cos, log becomes 2 arg log function, ! becomes container, etc.
--log Operator
+1. equals() method for Operators,Container,Constant,Variable
+2. Change ElemList to handle expressions in exponents
+	- Change simplify() in Operator to handle
+3. Check evaluate() method for Operator,Container,Constant,Variable
+4. log Operator
+5. Add factorial
+6. Add negative numbers
+7. Change string before plugging into Expression?  ex. sec becomes 1/cos, log becomes 2 arg log function, ! becomes container, etc.
+8. Constants (pi,e)
+9. Handle large numbers, scientific notation
+10. Create exceptions for 1/0, 0/0, invalid containers, etc.
+11. Composition
+12. Polynomial division, multiplication, factoring
+13. trig identities
 
-Simplify:
-	-Simplify children
-	-Get addends & factors of children
+Before cleanup:
+	- !,||
+	- e, pi
+	- -(x),2x
+	- lnx, xlogx,
+	- csc(x)
+
+After cleanup:
+	- fact(),abs()
+	- 2.71...,3.14...
+	- -1*x,2*x
+	- 2.71logx, xlogx
+	- 1/sin(x)
