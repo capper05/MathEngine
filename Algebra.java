@@ -183,10 +183,8 @@ public class Algebra {
         Expression exp2 = exp1.simplify();
         System.out.println(exp2);*/
 
-        Expression exp1 = stringToExpression("x^2+3*x+2");
-        System.out.println(exp1);
-        System.out.println(exp1.derive('x'));
-        System.out.println(exp1.derive('x').simplify());
+        Expression exp1 = stringToExpression("-1*x+x");
+        System.out.println(((Operator) exp1).simplify());
 
     }
 }

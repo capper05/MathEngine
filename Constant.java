@@ -10,11 +10,12 @@ public class Constant extends Expression {
         genElems();     //Generate addends and factors
     }
     public boolean equals(Expression other) {   //DETERMINE IF MATHEMATICALLY EQUIVALENT TO OTHER EXPRESSION
-        if (!(other instanceof Constant)) {
+        Expression new_exp = other.simplify();
+        if (!(new_exp instanceof Constant)) {
             //return other.equals(this);
             return false;
         }
-        return this.value == ((Constant) other).getValue();
+        return this.value == ((Constant) new_exp).getValue();
     }
     public Constant absoluteVal() {
         return new Constant(Math.abs(this.value));

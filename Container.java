@@ -3,12 +3,23 @@ public class Container extends Expression {
     //private String type;
     private ContainerType type;
     private Expression child;
+    private ContainerType[][] containPairs = new ContainerType[][] {
+        {ContainerType.SIN,ContainerType.ASIN},
+        {ContainerType.COS,ContainerType.ACOS},
+        {ContainerType.TAN,ContainerType.ATAN},
+        {ContainerType.SEC,ContainerType.ASEC},
+        {ContainerType.CSC,ContainerType.ACSC},
+        {ContainerType.COT,ContainerType.ACOT},
+    };
     public Container(ContainerType startType,Expression startChild) {
         this.type = startType;
         this.child = startChild;
         genElems();
     }//Constructor
     public boolean equals(Expression other) {   //DETERMINE IF MATHEMATICALLY EQUIVALENT TO OTHER EXPRESSION
+        Expression new_exp1 = this.simplify();
+        Expression new_exp2 = other.simplify();
+
         if (!(other instanceof Container)) {
             return false;
         }
@@ -166,6 +177,14 @@ public class Container extends Expression {
             }       //TODO: handle unfamiliar container
                     //TODO: handle inverse trig functions
             return new Constant(newConst);
+        } else if (newChild instanceof Container) {
+            for (int i=0;i<containPairs.length;i++) {
+                if (this.type == containPairs[i][0] && ((Container) newChild).getType() == containPairs[i][1]) {
+                    return ((Container) newChild).getChild(); 
+                } else if (this.type == containPairs[i][1] && ((Container) newChild).getType() == containPairs[i][0]) {
+                    return ((Container) newChild).getChild();
+                }
+            }
         }
         return new Container(this.type,newChild);  //TODO: check for trig identities, constants
     }//simplify

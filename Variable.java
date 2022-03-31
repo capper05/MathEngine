@@ -5,11 +5,12 @@ public class Variable extends Expression{
         genElems();     //Create addends and factors
     }
     public boolean equals(Expression other) {   //DETERMINE IF MATHEMATICALLY EQUIVALENT TO OTHER EXPRESSION
-        if (!(other instanceof Variable)) {
+        Expression new_exp = other.simplify();
+        if (!(new_exp instanceof Variable)) {
             //return other.equals(this);
             return false;
         }
-        return this.letter==((Variable) other).getLetter();
+        return this.letter==((Variable) new_exp).getLetter();
     }
     public String toString() {      //RETURNS STRING REPRESENTATION OF VARIABLE
         return String.valueOf(letter);
