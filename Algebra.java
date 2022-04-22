@@ -183,7 +183,7 @@ public class Algebra {
         Expression exp2 = exp1.simplify();
         System.out.println(exp2);*/
 
-        Expression exp1 = stringToExpression("-1*x+x");
+        Expression exp1 = stringToExpression("x*0");
         System.out.println(((Operator) exp1).simplify());
 
     }

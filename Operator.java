@@ -171,13 +171,12 @@ public class Operator extends Expression {
 
     public Expression simplify() {  //RETURNS EXPRESSION WITH SIMPLIFIED LIKE FACTORS/ADDENDS/POWERS
         //Start with easy constant cases
-        //System.out.println(this);
-        if (this.factors.getElements() == null) {       //If can be reduced to a constant, simplify to that constant
+        if (this.factors.getElements() == null) {           //Simplify to constant if possible
             return new Constant(this.factors.getConstant());
         } else if (this.addends.getElements() == null) {
             return new Constant(this.addends.getConstant());
         }
-        if (this.symbol == OperatorSymbol.MULTIPLY) {
+        if (this.symbol == OperatorSymbol.MULTIPLY) {   //This if statement might be unnecessary
             if (this.child1.equals(Constant.one)) {     //Multiplying by one
                 return this.child2.simplify();      //Return the other branch
             } else if (this.child2.equals(Constant.one)) {
@@ -254,6 +253,7 @@ public class Operator extends Expression {
             }
             Expression posTree;
             Expression negTree;
+            //CREATE FINAL RESULT- CONDITIONALS CAN BE REDUCED
             if (firstElems.length < 1) {    //if there is no positive mult/add
                 negTree = treeRecursive(operators[0],secElems,secQuants);
                 //Figure out negative numbers so you don't have to do 0-something
